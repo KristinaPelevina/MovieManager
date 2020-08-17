@@ -1,4 +1,3 @@
-
 package ru.netology.repository;
 
 import ru.netology.domain.MovieItem;
@@ -10,19 +9,19 @@ public class MovieRepository {
         return movies;
     }
 
-    public void save(MovieItem movie) {
+    public void save(MovieItem film) {
         int length = movies.length + 1;
         MovieItem[] tmp = new MovieItem[length];
         System.arraycopy(movies, 0, tmp, 0, movies.length);
         int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = movie;
+        tmp[lastIndex] = film;
         movies = tmp;
     }
 
     public MovieItem findById(int id) {
-        for (MovieItem movie : movies) {
-            if (movie.getId() == id) {
-                return movie;
+        for (MovieItem film : movies) {
+            if (film.getId() == id) {
+                return film;
             }
         }
         return null;
@@ -32,9 +31,9 @@ public class MovieRepository {
         int length = movies.length - 1;
         MovieItem[] tmp = new MovieItem[length];
         int index = 0;
-        for (MovieItem movie : movies) {
-            if (movie.getId() != id) {
-                tmp[index] = movie;
+        for (MovieItem film : movies) {
+            if (film.getId() != id) {
+                tmp[index] = film;
                 index++;
             }
         }

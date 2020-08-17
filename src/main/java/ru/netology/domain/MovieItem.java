@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class MovieItem {
   private int id;
   private String movieName;
-  private String movieGenre;
+  private String movieType;
 }

@@ -1,48 +1,44 @@
 package ru.netology.manager;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import ru.netology.domain.MovieItem;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
+import ru.netology.repository.MovieRepository;
 
 public class MovieManager {
-  private MovieItem[] movies = new MovieItem[0];
+  private MovieRepository repository;
   private int defaultMovieCount = 10;
   private int movieCount;
 
-  public MovieManager (int movieCount) {
+  public MovieManager(MovieRepository repository) {
+    this.repository = repository;
+  }
+
+  public MovieManager(MovieRepository repository, int movieCount) {
+    this.repository = repository;
     this.movieCount = movieCount;
   }
 
   public void movieAdd(MovieItem movie) {
-    int length = movies.length + 1;
-    MovieItem[] tmp = new MovieItem [length];
-    System.arraycopy(movies, 0, tmp, 0, movies.length);
-    int lastIndex = tmp.length - 1;
-    tmp[lastIndex] = movie;
-    movies = tmp;
+    repository.save(movie);
   }
 
   public MovieItem[] getAll() {
-    int requestedMovies = movies.length;
+    MovieItem[] movieRepository = repository.findAll();
+    int requestedMovies = movieRepository.length;
 
     if (movieCount == 0) {
-      if (defaultMovieCount < movies.length) {
+      if (defaultMovieCount < movieRepository.length) {
         requestedMovies = defaultMovieCount;
       }
     } else {
-      if (movieCount < movies.length) {
+      if (movieCount < movieRepository.length) {
         requestedMovies = movieCount;
       }
     }
+
     MovieItem[] result = new MovieItem[requestedMovies];
     for (int f = 0; f < result.length; f++) {
-      int index = movies.length - f - 1;
-      result[f] = movies[index];
+      int index = movieRepository.length - f - 1;
+      result[f] = movieRepository[index];
     }
     return result;
   }

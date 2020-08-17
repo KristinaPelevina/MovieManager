@@ -15,12 +15,12 @@ class MovieRepositoryTest {
     private MovieItem fifth = new MovieItem(5, "Человек-невидимка", "ужасы");
     private MovieItem sixth = new MovieItem(6, "Тролли. Мировой тур", "мультфильм");
     private MovieItem seventh = new MovieItem(7, "Номер один", "комедия");
-    private MovieItem eighth = new MovieItem(8, "Тихое место 2", "фантастика");
-    private MovieItem ninth = new MovieItem(9, "Мулан","ужасы");
+    private MovieItem eighth = new MovieItem(8, "Тихое место 2", "ужасы");
+    private MovieItem ninth = new MovieItem(9, "Довод","фантастика");
     private MovieItem tenth = new MovieItem(10,"Форсаж 10","драма");
 
     @Test
-    public void shouldFindAllFilms() {
+    public void shouldFindAllMovies() {
         repository.save(first);
         repository.save(second);
         repository.save(third);
@@ -37,14 +37,14 @@ class MovieRepositoryTest {
     }
 
     @Test
-    void shouldReturnEmptyIfNoFilms() {
+    void shouldReturnEmptyIfNoMovies() {
         MovieItem[] expected = new MovieItem[]{};
         MovieItem[] actual = repository.findAll();
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldSaveFilms() {
+    public void shouldSaveMovies() {
         repository.save(first);
         repository.save(second);
         repository.save(third);
@@ -56,7 +56,7 @@ class MovieRepositoryTest {
     }
 
     @Test
-    public void shouldFindIfFilmExists() {
+    public void shouldFindIfMovieExists() {
         repository.save(first);
         repository.save(second);
         repository.save(third);
@@ -70,7 +70,7 @@ class MovieRepositoryTest {
     }
 
     @Test
-    public void shouldReturnNullIfFilmNotExists() {
+    public void shouldReturnNullIfMovieNotExists() {
         repository.save(first);
         repository.save(second);
         repository.save(third);
